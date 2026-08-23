@@ -407,7 +407,7 @@
 
 .love-target {
   position: absolute;
-  top: 2.5rem;
+  top: -4rem;
   right: 3%;
   z-index: 25;
   min-width: 14rem;
@@ -423,6 +423,27 @@
   font-size: clamp(1.5rem, 2.4vw, 2.3rem);
   font-style: italic;
   animation: loveMessageIn .65s ease-out both;
+  position: relative;
+  z-index: 1;
+}
+
+.love-target.is-celebrating::before,
+.love-target.is-celebrating::after {
+  position: absolute;
+  top: 3.7rem;
+  left: 50%;
+  width: 2rem;
+  height: 2rem;
+  border: 2px solid rgba(237, 104, 147, .65);
+  border-radius: 999px;
+  content: '';
+  transform: translate(-50%, -50%);
+  animation: loveImpact 1.5s ease-out infinite;
+}
+
+.love-target.is-celebrating::after {
+  border-color: rgba(246, 197, 76, .75);
+  animation-delay: .45s;
 }
 
 .love-burst {
@@ -431,12 +452,16 @@
   left: 50%;
   color: #ef7095;
   font-size: 2rem;
-  animation: loveBurst .9s ease-out both;
+  animation: loveBurst 1.5s ease-out infinite;
 }
 
 .love-burst-two { color: #f4c54c; animation-delay: .06s; }
 .love-burst-three { color: #ff8bab; animation-delay: .12s; }
 .love-burst-four { color: #f59abc; animation-delay: .18s; }
+.love-burst-five { color: #ff789f; animation-delay: .24s; }
+.love-burst-six { color: #f3b2c7; animation-delay: .3s; }
+.love-burst-seven { color: #ffd26e; animation-delay: .36s; }
+.love-burst-eight { color: #ee8fb1; animation-delay: .42s; }
 
 @keyframes bowBounce {
   0%, 100% { transform: translateY(0) rotate(-25deg) scale(1.45); }
@@ -458,6 +483,15 @@
 .love-burst-two { --burst-x: 4.5rem; --burst-y: -4.5rem; }
 .love-burst-three { --burst-x: 5.5rem; --burst-y: 1rem; }
 .love-burst-four { --burst-x: -4rem; --burst-y: 1.5rem; }
+.love-burst-five { --burst-x: 1.5rem; --burst-y: -5.5rem; }
+.love-burst-six { --burst-x: -6rem; --burst-y: -.3rem; }
+.love-burst-seven { --burst-x: 3rem; --burst-y: 3rem; }
+.love-burst-eight { --burst-x: -1rem; --burst-y: -5.8rem; }
+
+@keyframes loveImpact {
+  0% { transform: translate(-50%, -50%) scale(.15); opacity: .95; }
+  100% { transform: translate(-50%, -50%) scale(5); opacity: 0; }
+}
 
 @keyframes loveMessageIn {
   from { transform: translateY(12px) scale(.9); opacity: 0; }
@@ -475,7 +509,7 @@
   .love-arrow { display: none; }
 
   .love-target {
-    top: 1rem;
+    top: .5rem;
     right: 1rem;
     min-width: 10rem;
   }
