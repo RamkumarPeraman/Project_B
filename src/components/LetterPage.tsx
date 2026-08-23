@@ -6,6 +6,14 @@ type LetterPageProps = {
   onQuestion: () => void
 }
 
+const relationshipNames = [
+  'My Love',
+  'My Beloved',
+  'My Sweetheart',
+  'My universe',
+  'My Everything',
+]
+
 export function LetterPage({ showLetter, onToggleLetter, onQuestion }: LetterPageProps) {
   const scrollToMemories = () =>
     document.getElementById('memories')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
@@ -18,7 +26,7 @@ export function LetterPage({ showLetter, onToggleLetter, onQuestion }: LetterPag
   return (
     <section className="relative mx-auto max-w-6xl px-5 py-12 sm:py-20 overflow-hidden">
       {/* COUPLE SILHOUETTE - TOP RIGHT CORNER */}
-      <div className="absolute top-0 right-0 w-64 h-64 pointer-events-none opacity-10">
+      <div className="hidden" aria-hidden="true">
         <svg
           viewBox="0 0 300 300"
           className="w-full h-full"
@@ -73,7 +81,7 @@ export function LetterPage({ showLetter, onToggleLetter, onQuestion }: LetterPag
 
       {/* Content */}
       <div className="relative z-10">
-        <div className="grid min-h-[78vh] items-start gap-10 lg:grid-cols-[1fr_.6fr] lg:gap-12">
+        <div className="grid min-h-[78vh] items-start gap-10 lg:grid-cols-[1fr_.6fr_.45fr] lg:gap-10">
           <div>
             <p className="font-serif text-xl italic text-[#cc7692]">
               To the love of my life
@@ -114,7 +122,7 @@ export function LetterPage({ showLetter, onToggleLetter, onQuestion }: LetterPag
           </div>
 
           {/* MEDIUM CALENDAR */}
-          <div className="relative mx-auto w-full max-w-[260px] lg:mt-0 lg:ml-auto">
+          <div className="relative mx-auto w-full max-w-[260px] lg:mt-0">
             <div className="absolute -inset-5 rounded-full bg-[#fde2e9] blur-lg opacity-60" />
 
             <div className="relative overflow-hidden rounded-xl border-[5px] border-white bg-[#fffdfc] text-center shadow-xl">
@@ -173,7 +181,19 @@ export function LetterPage({ showLetter, onToggleLetter, onQuestion }: LetterPag
                 </div>
               </div>
             </div>
+
           </div>
+
+          <aside className="who-is-she-panel mx-auto w-full max-w-[230px] self-center text-center lg:mx-0">
+            <p className="font-serif text-2xl italic text-[#8d3856]">Who is She?</p>
+            <div className="love-name-viewport mt-4" aria-label={relationshipNames.join(', ')}>
+              <div className="love-name-track">
+                {[...relationshipNames, ...relationshipNames].map((name, index) => (
+                  <p key={`${name}-${index}`} className="love-name-item">{name}</p>
+                ))}
+              </div>
+            </div>
+          </aside>
         </div>
       </div>
 

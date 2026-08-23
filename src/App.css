@@ -235,6 +235,39 @@
   .sticker-seven { display: none; }
 }
 
+.love-name-viewport {
+  height: 11.25rem;
+  overflow: hidden;
+  mask-image: linear-gradient(to bottom, transparent, black 9%, black 91%, transparent);
+}
+
+.love-name-track {
+  animation: loveNameScroll 12s linear infinite;
+}
+
+.love-name-item {
+  height: 2.25rem;
+  margin: 0;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 1.25rem;
+  font-style: italic;
+  line-height: 2.25rem;
+  color: #d65f84;
+}
+
+@keyframes loveNameScroll {
+  0%, 16% { transform: translateY(0); }
+  20%, 36% { transform: translateY(-2.25rem); }
+  40%, 56% { transform: translateY(-4.5rem); }
+  60%, 76% { transform: translateY(-6.75rem); }
+  80%, 96% { transform: translateY(-9rem); }
+  100% { transform: translateY(-11.25rem); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .love-name-track { animation: none; }
+}
+
 
 
 /* ========== DUDU & BUBU PANDA STYLES ========== */
