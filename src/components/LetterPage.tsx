@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { memories } from '../data/memories'
 
 type LetterPageProps = {
@@ -15,8 +16,27 @@ const relationshipNames = [
 ]
 
 export function LetterPage({ showLetter, onToggleLetter, onQuestion }: LetterPageProps) {
+  const [loveLaunchStage, setLoveLaunchStage] = useState<'idle' | 'ready' | 'launching' | 'celebrating'>('idle')
   const scrollToMemories = () =>
     document.getElementById('memories')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+
+  const launchLove = () => {
+    if (loveLaunchStage === 'idle') {
+      setLoveLaunchStage('ready')
+      return
+    }
+
+    if (loveLaunchStage === 'ready') {
+      setLoveLaunchStage('launching')
+      window.setTimeout(() => {
+        setLoveLaunchStage('celebrating')
+        window.setTimeout(() => setLoveLaunchStage('idle'), 5000)
+      }, 1150)
+      return
+    }
+
+    setLoveLaunchStage('idle')
+  }
 
   // September 1, 2026 is a Tuesday
   const firstDayOfMonth = 2 // 0 = Sunday, 1 = Monday, 2 = Tuesday
@@ -81,6 +101,39 @@ export function LetterPage({ showLetter, onToggleLetter, onQuestion }: LetterPag
 
       {/* Content */}
       <div className="relative z-10">
+        <div className={`love-launcher is-${loveLaunchStage}`} aria-live="polite">
+          <span className="love-launcher-bow" aria-hidden="true">
+            <span className="bow-curve" />
+            <span className="bow-string bow-string-top" />
+            <span className="bow-string bow-string-bottom" />
+            <span className="bow-grip" />
+            <span className="bow-loaded-arrow" />
+          </span>
+          <button
+            type="button"
+            onClick={launchLove}
+            disabled={loveLaunchStage === 'launching'}
+            className="love-launcher-button"
+          >
+            {loveLaunchStage === 'idle' || loveLaunchStage === 'celebrating' ? 'Click here' : loveLaunchStage === 'ready' ? 'Ready' : 'Flying…'}
+          </button>
+          {loveLaunchStage === 'ready' && <span className="love-release-hint">Tap again to release!</span>}
+        </div>
+
+        {loveLaunchStage === 'launching' && <span className="love-arrow" aria-hidden="true" />}
+
+        <div className={`love-target ${loveLaunchStage === 'celebrating' ? 'is-celebrating' : ''}`} aria-live="polite">
+          {loveLaunchStage === 'celebrating' && (
+            <>
+              <span className="love-burst love-burst-one" aria-hidden="true">♥</span>
+              <span className="love-burst love-burst-two" aria-hidden="true">✦</span>
+              <span className="love-burst love-burst-three" aria-hidden="true">♥</span>
+              <span className="love-burst love-burst-four" aria-hidden="true">✿</span>
+              <p>Love you babiee ♡</p>
+            </>
+          )}
+        </div>
+
         <div className="grid min-h-[78vh] items-start gap-10 lg:grid-cols-[1fr_.6fr_.45fr] lg:gap-10">
           <div>
             <p className="font-serif text-xl italic text-[#cc7692]">
