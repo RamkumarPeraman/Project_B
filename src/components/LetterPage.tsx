@@ -113,11 +113,10 @@ export function LetterPage({ showLetter, onToggleLetter, onQuestion }: LetterPag
             type="button"
             onClick={launchLove}
             disabled={loveLaunchStage === 'launching'}
-            className="love-launcher-button"
+            className="love-launcher-button mt-5"
           >
-            {loveLaunchStage === 'idle' || loveLaunchStage === 'celebrating' ? 'Click here' : loveLaunchStage === 'ready' ? 'Ready' : 'Flying…'}
-          </button>
-          {loveLaunchStage === 'ready' && <span className="love-release-hint">Tap again to release!</span>}
+            {loveLaunchStage === 'idle' || loveLaunchStage === 'celebrating' ? 'Click here' : loveLaunchStage === 'ready' ? 'Ready' : 'Flying'}
+          </button>          
         </div>
 
         {loveLaunchStage === 'launching' && <span className="love-arrow" aria-hidden="true" />}
@@ -145,8 +144,8 @@ export function LetterPage({ showLetter, onToggleLetter, onQuestion }: LetterPag
             </p>
 
             <h2 className="mt-2 font-serif text-5xl leading-none text-[#7d2949] sm:text-7xl">
-              Happy birthday,<br />
-              <span className="text-[#e77298]">my love.</span>
+              Happy Birthday,<br />
+              <span className="text-[#e77298]">My Love.</span>
             </h2>
 
             <p className="mt-6 max-w-xl text-base leading-8 text-[#76515f]">
@@ -156,7 +155,7 @@ export function LetterPage({ showLetter, onToggleLetter, onQuestion }: LetterPag
 
             <button
               onClick={onToggleLetter}
-              className="mt-7 rounded-full border-2 border-[#b95073] px-6 py-3 text-xs font-bold uppercase tracking-[.16em] text-[#a63d60] transition hover:bg-[#b95073] hover:text-white"
+              className="mt-7 rounded-full border-2 border-[#b95073] px-6 py-3 text-xs font-bold uppercase tracking-[.16em] text-[#a63d60] transition hover:bg-[#b95073] hover:text-white cursor-pointer"
             >
               {showLetter ? 'Close my letter' : 'Read my little letter'} ♡
             </button>
@@ -166,13 +165,13 @@ export function LetterPage({ showLetter, onToggleLetter, onQuestion }: LetterPag
                 My darling, thank you for being you. May this next chapter be full
                 of tiny adventures, loud laughs, peaceful mornings, and every
                 dream your beautiful heart wants. I&apos;ll be cheering for you in
-                all of it. Happy birthday, my love. — Yours, always ♥
+                all of it. Happy birthday, my love. -- Yours, always 💙
               </div>
             )}
 
             <button
               onClick={scrollToMemories}
-              className="mt-8 block text-xs font-bold uppercase tracking-[.18em] text-[#ae4f6d] hover:text-[#73253f]"
+              className="mt-8 block text-xs font-bold uppercase tracking-[.18em] text-[#ae4f6d] hover:text-[#73253f] cursor-pointer"
             >
               See our little memories ↓
             </button>
@@ -241,7 +240,7 @@ export function LetterPage({ showLetter, onToggleLetter, onQuestion }: LetterPag
 
           </div>
 
-          <aside className="who-is-she-panel mx-auto w-full max-w-[230px] self-center text-center lg:mx-0">
+          <aside className="who-is-she-panel mx-auto -mt-40 w-full max-w-[230px] self-center text-center lg:mx-0">
             <p className="font-serif text-2xl italic text-[#8d3856]">Who is She?</p>
             <div className="love-name-viewport mt-4" aria-label={relationshipNames.join(', ')}>
               <div className="love-name-track">
@@ -287,7 +286,7 @@ export function LetterPage({ showLetter, onToggleLetter, onQuestion }: LetterPag
 
         <button
           onClick={onQuestion}
-          className="mt-12 rounded-full bg-[#923b5a] px-7 py-4 text-xs font-bold uppercase tracking-[.16em] text-white shadow-lg transition hover:-translate-y-1"
+          className="mt-12 rounded-full bg-[#923b5a] px-7 py-4 text-xs font-bold uppercase tracking-[.16em] text-white shadow-lg transition hover:-translate-y-1  cursor-pointer"
         >
           One last question →
         </button>

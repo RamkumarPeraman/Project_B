@@ -55,7 +55,7 @@ export function LoveQuestionPage({
           </p>
           <button
             onClick={onReplay}
-            className="mt-8 text-xs font-bold uppercase tracking-widest text-[#af5c75]"
+            className="mt-8 text-xs font-bold uppercase tracking-widest text-[#af5c75] cursor-pointer"
           >
             Replay our little story
           </button>
@@ -106,7 +106,7 @@ export function LoveQuestionPage({
           onMouseEnter={onNoEnter}
           onPointerDown={onNoEnter}
           style={{ transform: `translate(${noMove.x}px, ${noMove.y}px)` }}
-          className="rounded-full border-2 border-[#9e9099] bg-white/80 px-8 py-4 text-sm font-bold uppercase tracking-[.18em] text-[#766873] transition-transform duration-100"
+          className="rounded-full border-2 border-[#9e9099] bg-white/80 px-8 py-4 text-sm font-bold uppercase tracking-[.18em] text-[#766873] transition-transform duration-100 cursor-pointer"
         >
           No
         </button>

@@ -76,7 +76,7 @@ export function WelcomePage({ countdown, onOpen }: WelcomePageProps) {
 
         <button
           onClick={openPin}
-          className="group mt-8 rounded-full bg-[#8f3658] px-7 py-4 text-sm font-bold uppercase tracking-[.16em] text-white shadow-[0_12px_28px_rgba(143,54,88,.25)] transition hover:-translate-y-1 hover:bg-[#73253f]"
+          className="group mt-8 rounded-full bg-[#8f3658] px-7 py-4 text-sm font-bold uppercase tracking-[.16em] text-white shadow-[0_12px_28px_rgba(143,54,88,.25)] transition hover:-translate-y-1 hover:bg-[#73253f] cursor-pointer"
         >
           Open your birthday surprise{' '}
           <span className="ml-2 inline-block transition group-hover:translate-x-1">→</span>
@@ -121,13 +121,13 @@ export function WelcomePage({ countdown, onOpen }: WelcomePageProps) {
               <button
                 type="button"
                 onClick={() => setIsPinOpen(false)}
-                className="rounded-full px-5 py-3 text-xs font-bold uppercase tracking-[.15em] text-[#a86378] transition hover:bg-[#f9e4ea]"
+                className="rounded-full px-5 py-3 text-xs font-bold uppercase tracking-[.15em] text-[#a86378] transition hover:bg-[#f9e4ea] cursor-pointer"
               >
                 Not yet
               </button>
               <button
                 type="submit"
-                className="rounded-full bg-[#8f3658] px-6 py-3 text-xs font-bold uppercase tracking-[.15em] text-white shadow-[0_8px_18px_rgba(143,54,88,.22)] transition hover:bg-[#73253f]"
+                className="rounded-full bg-[#8f3658] px-6 py-3 text-xs font-bold uppercase tracking-[.15em] text-white shadow-[0_8px_18px_rgba(143,54,88,.22)] transition hover:bg-[#73253f] cursor-pointer"
               >
                 Unlock ♡
               </button>
