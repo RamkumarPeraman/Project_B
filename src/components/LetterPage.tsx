@@ -62,7 +62,7 @@ export function LetterPage({ showLetter, onToggleLetter, onQuestion }: LetterPag
             <path d="M15,95 L45,95 L50,140 L10,140 Z" />
             <circle cx="20" cy="60" r="5" />
             <path d="M10,25 Q8,12 20,8 Q30,5 40,10 Q48,15 50,22 Q52,28 48,32" fill="none" stroke="#b9496e" strokeWidth="3" />
-            
+
             {/* Man */}
             <circle cx="95" cy="25" r="25" />
             <path d="M70,55 L120,55 L115,95 L75,95 Z" />
@@ -70,10 +70,10 @@ export function LetterPage({ showLetter, onToggleLetter, onQuestion }: LetterPag
             <path d="M118,70 L125,100 L115,102 L108,82 Z" />
             <path d="M75,95 L115,95 L120,140 L70,140 Z" />
             <circle cx="78" cy="60" r="5" />
-            
+
             {/* Arms holding hands */}
             <path d="M50,60 L70,60" stroke="#b9496e" strokeWidth="6" strokeLinecap="round" />
-            
+
             {/* Heart above them */}
             <path
               d="M60,5 C60,-5 52,-15 45,-15 C35,-15 30,-3 30,10 C30,22 60,40 60,40 C60,40 90,22 90,10 C90,-3 85,-15 75,-15 C68,-15 60,-5 60,5 Z"
@@ -81,7 +81,7 @@ export function LetterPage({ showLetter, onToggleLetter, onQuestion }: LetterPag
               opacity="0.6"
               transform="scale(0.8) translate(15, 5)"
             />
-            
+
             {/* Small floating hearts */}
             <path
               d="M20,-10 C20,-16 16,-20 12,-20 C8,-20 5,-16 5,-12 C5,-7 20,-2 20,-2 C20,-2 35,-7 35,-12 C35,-16 32,-20 28,-20 C24,-20 20,-16 20,-10 Z"
@@ -101,7 +101,10 @@ export function LetterPage({ showLetter, onToggleLetter, onQuestion }: LetterPag
 
       {/* Content */}
       <div className="relative z-10">
-        <div className={`love-launcher is-${loveLaunchStage}`} aria-live="polite">
+        <div
+          className={`love-launcher is-${loveLaunchStage}`}
+          aria-live="polite"
+        >
           <span className="love-launcher-bow" aria-hidden="true">
             <span className="bow-curve" />
             <span className="bow-string bow-string-top" />
@@ -116,7 +119,7 @@ export function LetterPage({ showLetter, onToggleLetter, onQuestion }: LetterPag
             className="love-launcher-button mt-5"
           >
             {loveLaunchStage === 'idle' || loveLaunchStage === 'celebrating' ? 'Click here' : loveLaunchStage === 'ready' ? 'Ready' : 'Flying'}
-          </button>          
+          </button>
         </div>
 
         {loveLaunchStage === 'launching' && <span className="love-arrow" aria-hidden="true" />}
@@ -162,10 +165,7 @@ export function LetterPage({ showLetter, onToggleLetter, onQuestion }: LetterPag
 
             {showLetter && (
               <div className="animate-in mt-5 rounded-2xl border border-[#efd0da] bg-[#fffdfc] p-5 font-serif text-lg leading-8 text-[#754558] shadow-sm">
-                My darling, thank you for being you. May this next chapter be full
-                of tiny adventures, loud laughs, peaceful mornings, and every
-                dream your beautiful heart wants. I&apos;ll be cheering for you in
-                all of it. Happy birthday, my love. -- Yours, always 💙
+                “My darling, thank you for being you. May this next chapter be filled with tiny adventures, loud laughs, peaceful mornings, and every dream your beautiful heart desires. I'll be cheering you on through all of it. Happy birthday, my love. &nbsp;-- Yours, always.”
               </div>
             )}
 
@@ -213,11 +213,10 @@ export function LetterPage({ showLetter, onToggleLetter, onQuestion }: LetterPag
                     return (
                       <span
                         key={dayNumber}
-                        className={`flex aspect-square items-center justify-center rounded-full text-[10px] ${
-                          isSpecialDay
-                            ? 'bg-[#df587f] font-serif text-[11px] text-white shadow-[0_3px_8px_rgba(209,61,109,.35)] scale-110'
-                            : 'text-[#81576a] hover:bg-[#fce8ef] transition-colors'
-                        }`}
+                        className={`flex aspect-square items-center justify-center rounded-full text-[10px] ${isSpecialDay
+                          ? 'bg-[#df587f] font-serif text-[11px] text-white shadow-[0_3px_8px_rgba(209,61,109,.35)] scale-110'
+                          : 'text-[#81576a] hover:bg-[#fce8ef] transition-colors'
+                          }`}
                       >
                         {isSpecialDay ? '♥' : dayNumber}
                       </span>
@@ -240,7 +239,7 @@ export function LetterPage({ showLetter, onToggleLetter, onQuestion }: LetterPag
 
           </div>
 
-          <aside className="who-is-she-panel mx-auto -mt-40 w-full max-w-[230px] self-center text-center lg:mx-0">
+          <aside className="who-is-she-panel mx-auto md:-mt-40 w-full max-w-[230px] self-center text-center lg:mx-0">
             <p className="font-serif text-2xl italic text-[#8d3856]">Who is She?</p>
             <div className="love-name-viewport mt-4" aria-label={relationshipNames.join(', ')}>
               <div className="love-name-track">
@@ -257,17 +256,13 @@ export function LetterPage({ showLetter, onToggleLetter, onQuestion }: LetterPag
       <div id="memories" className="relative z-10 scroll-mt-8 border-t border-[#f0d4dc] pt-14 text-center">
         <p className="font-serif text-4xl italic text-[#a34a67]">Our little memories</p>
 
-        <p className="mt-3 text-sm text-[#9b7080]">
-          Replace these demo photos with your own favourite moments together.
-        </p>
 
         <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {memories.map((memory, index) => (
             <figure
               key={`${memory.caption}-${index}`}
-              className={`rounded-sm bg-white p-3 pb-5 text-left shadow-[0_12px_28px_rgba(122,56,81,.12)] transition duration-300 hover:-translate-y-2 hover:rotate-0 ${
-                index % 2 ? 'rotate-2' : '-rotate-2'
-              }`}
+              className={`rounded-sm bg-white p-3 pb-5 text-left shadow-[0_12px_28px_rgba(122,56,81,.12)] transition duration-300 hover:-translate-y-2 hover:rotate-0 ${index % 2 ? 'rotate-2' : '-rotate-2'
+                }`}
             >
               <img
                 src={memory.src}

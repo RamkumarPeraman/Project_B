@@ -7,7 +7,6 @@ import beauti from './beauti.jpg';
 import fav_per from './fav_per.jpg';
 import last from './last.jpg';
 
-
 export const memories = [
   { src: magic, caption: 'A little bit of magic', note: 'The kind of moment I want to keep forever.' },
   { src: beauti, caption: 'Made of memories', note: 'More beautiful than any photograph.' },
