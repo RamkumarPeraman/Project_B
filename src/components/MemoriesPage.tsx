@@ -41,7 +41,7 @@ export function MemoriesPage({ memoryIndex, onPrevious, onNext }: MemoriesPagePr
         >
           ← Back
         </button>
-
+        
         <button
           onClick={onNext}
           className="rounded-full bg-[#923b5a] px-6 py-3 text-xs font-bold uppercase tracking-widest text-white shadow-lg"

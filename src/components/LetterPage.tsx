@@ -164,7 +164,7 @@ export function LetterPage({ showLetter, onToggleLetter, onQuestion }: LetterPag
               <span className="love-burst love-burst-six" aria-hidden="true">♥</span>
               <span className="love-burst love-burst-seven" aria-hidden="true">✿</span>
               <span className="love-burst love-burst-eight" aria-hidden="true">✧</span>
-              <p>Love you babiee ♡</p>
+              <p className='arrow-love'>Love you beibee 💙</p>
             </>
           )}
         </div>

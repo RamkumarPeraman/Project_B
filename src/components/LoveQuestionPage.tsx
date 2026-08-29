@@ -44,21 +44,17 @@ export function LoveQuestionPage({
     return (
       <section className="relative z-10 flex min-h-screen items-center justify-center overflow-hidden px-5 py-12 text-center">
         <HappyCollage />
-        <div className="love-note-card animate-in relative z-10 max-w-xl px-7 py-10 sm:px-12">
-          <div className="text-4xl">💙💙</div>
-          <p className="mt-5 font-serif text-4xl italic text-[#b33d64] sm:text-5xl">
+        <div className="love-note-card animate-in relative z-10 max-w-sm px-3 py-4 sm:px-4">
+          <div className="text-2xl">💙💙</div>
+
+          <p className="mt-3 font-serif text-2xl italic text-[#b33d64] sm:text-3xl">
             I love you more,<br />
             always and forever.
           </p>
-          <p className="mt-4 text-sm text-[#9b5e74]">
+
+          <p className="mt-3 text-xs text-[#9b5e74]">
             Every little photo is another reason I&apos;m grateful for you.
           </p>
-          <button
-            onClick={onReplay}
-            className="mt-8 text-xs font-bold uppercase tracking-widest text-[#af5c75] cursor-pointer"
-          >
-            Replay our little story
-          </button>
         </div>
       </section>
     )
@@ -67,9 +63,8 @@ export function LoveQuestionPage({
   return (
     <section className="relative mx-auto flex min-h-screen max-w-4xl flex-col items-center justify-center px-5 py-12 text-center">
       <p
-        className={`font-serif text-xl italic ${
-          mood === 'sad' ? 'text-[#837583]' : 'text-[#d57694]'
-        }`}
+        className={`font-serif text-xl italic ${mood === 'sad' ? 'text-[#837583]' : 'text-[#d57694]'
+          }`}
       >
         {mood === 'sad'
           ? 'Oh no… that makes my heart a little sad.'
@@ -77,9 +72,8 @@ export function LoveQuestionPage({
       </p>
 
       <h2
-        className={`mt-3 font-serif text-6xl leading-none sm:text-8xl ${
-          mood === 'sad' ? 'text-[#665a66]' : 'text-[#842f50]'
-        }`}
+        className={`mt-3 font-serif text-6xl leading-none sm:text-8xl ${mood === 'sad' ? 'text-[#665a66]' : 'text-[#842f50]'
+          }`}
       >
         Do you<br />
         <span className={mood === 'happy' ? 'text-[#fa5b8b]' : ''}>love me?</span>
@@ -111,10 +105,6 @@ export function LoveQuestionPage({
           No
         </button>
       </div>
-
-      <p className="mt-8 text-xs text-[#a9808e]">
-        Psst… the No button is a little shy.
-      </p>
     </section>
   )
 }

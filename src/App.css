@@ -555,6 +555,11 @@
 
 }
 
+.arrow-love {
+  color: rgb(224, 97, 148) !important;
+  margin-right: 65px !important;
+}
+
 .bow-loaded-arrow::after,
 .love-arrow::after {
   position: absolute;
