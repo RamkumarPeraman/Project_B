@@ -30,7 +30,7 @@ export function WelcomePage({ countdown, onOpen }: WelcomePageProps) {
   const submitPin = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
-    if (pin === '112027' || pin == '112003' || pin == '270323') {
+    if (pin === '102938') {
       setIsPinOpen(false)
       onOpen()
       return

@@ -67,7 +67,7 @@ export function LoveQuestionPage({
           }`}
       >
         {mood === 'sad'
-          ? 'Oh no… that makes my heart a little sad.'
+          ? 'Oh no... that makes my heart ache even more. 🥺💔'
           : 'One tiny question before you go'}
       </p>
 
