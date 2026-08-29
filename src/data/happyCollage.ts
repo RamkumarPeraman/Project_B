@@ -1,4 +1,3 @@
-import magic from './magic.jpg';
 import img1 from './1.jpg';
 import img2 from './2.jpg';
 import img3 from './3.jpg';
@@ -52,7 +51,6 @@ import img52 from './52.jpg';
 import img53 from './53.jpg';
 import img54 from './54.jpg';
 import happiest_place from './happiest_place.jpg';
-import smile from './smile.jpg';
 // import img47 from './47.jpg';
 
 export const happyCollagePhotos = [
