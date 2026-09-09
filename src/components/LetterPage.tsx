@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { memories } from '../data/memories'
+import rose_dudu from '../assets/rose_dudu.png'
 
 type LetterPageProps = {
   showLetter: boolean
@@ -25,7 +26,7 @@ const relationshipNames = [
   'My Soulmate',
   'My Heart',
   'My World',
-  'My Home',  
+  'My Home',
   'My Favorite Person',
   'My Precious',
   'My Cutie',
@@ -33,21 +34,72 @@ const relationshipNames = [
   'My Lovebug',
   'My Dream Girl',
   'My Beautiful',
-  'My One & Only',  
+  'My One & Only',
   'My Person',
   'My Better Half',
   'My Little Love',
   'My Sweet Girl',
   'My Moon',
   'My Star',
-  'My Everything Always',  
-  'My Forever Love'
+  'My Everything Always',
+  'My Forever Love',
 ]
 
-export function LetterPage({ showLetter, onToggleLetter, onQuestion }: LetterPageProps) {
-  const [loveLaunchStage, setLoveLaunchStage] = useState<'idle' | 'ready' | 'launching' | 'celebrating'>('idle')
+export function LetterPage({
+  showLetter,
+  onToggleLetter,
+  onQuestion,
+}: LetterPageProps) {
+  const [loveLaunchStage, setLoveLaunchStage] = useState<
+    'idle' | 'ready' | 'launching' | 'celebrating'
+  >('idle')
+
+  // 💌 Letter text
+  const letterText =
+    "My darling, thank you for being you. May this next chapter be filled with tiny adventures, loud laughs, peaceful mornings, and every dream your beautiful heart desires. I'll be cheering you on through all of it. Happy birthday, my love. — Yours, always."
+
+  const [displayedText, setDisplayedText] = useState('')
+  const [nameStartIndex, setNameStartIndex] = useState(0)
+
+  useEffect(() => {
+    const interval = window.setInterval(() => {
+      setNameStartIndex((prev) => {
+        if (prev === relationshipNames.length - 1) {
+          return 0
+        }
+
+        return prev + 1
+      })
+    }, 1800)
+
+    return () => window.clearInterval(interval)
+  }, [])
+  // 💌 Word-by-word letter animation
+  useEffect(() => {
+    if (!showLetter) {
+      setDisplayedText('')
+      return
+    }
+
+    const words = letterText.split(' ')
+    let index = 0
+
+    const interval = window.setInterval(() => {
+      setDisplayedText(words.slice(0, index + 1).join(' '))
+      index++
+
+      if (index >= words.length) {
+        window.clearInterval(interval)
+      }
+    }, 150)
+
+    return () => window.clearInterval(interval)
+  }, [showLetter])
+
   const scrollToMemories = () =>
-    document.getElementById('memories')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    document
+      .getElementById('memories')
+      ?.scrollIntoView({ behavior: 'smooth', block: 'start' })
 
   const launchLove = () => {
     if (loveLaunchStage === 'idle') {
@@ -57,10 +109,15 @@ export function LetterPage({ showLetter, onToggleLetter, onQuestion }: LetterPag
 
     if (loveLaunchStage === 'ready') {
       setLoveLaunchStage('launching')
+
       window.setTimeout(() => {
         setLoveLaunchStage('celebrating')
-        window.setTimeout(() => setLoveLaunchStage('idle'), 5000)
+
+        window.setTimeout(() => {
+          setLoveLaunchStage('idle')
+        }, 5000)
       }, 1150)
+
       return
     }
 
@@ -68,7 +125,7 @@ export function LetterPage({ showLetter, onToggleLetter, onQuestion }: LetterPag
   }
 
   // September 1, 2026 is a Tuesday
-  const firstDayOfMonth = 2 // 0 = Sunday, 1 = Monday, 2 = Tuesday
+  const firstDayOfMonth = 2
   const daysInMonth = 30
   const emptyDays = firstDayOfMonth
 
@@ -90,7 +147,12 @@ export function LetterPage({ showLetter, onToggleLetter, onQuestion }: LetterPag
             <path d="M48,70 L55,100 L45,102 L38,82 Z" />
             <path d="M15,95 L45,95 L50,140 L10,140 Z" />
             <circle cx="20" cy="60" r="5" />
-            <path d="M10,25 Q8,12 20,8 Q30,5 40,10 Q48,15 50,22 Q52,28 48,32" fill="none" stroke="#b9496e" strokeWidth="3" />
+            <path
+              d="M10,25 Q8,12 20,8 Q30,5 40,10 Q48,15 50,22 Q52,28 48,32"
+              fill="none"
+              stroke="#b9496e"
+              strokeWidth="3"
+            />
 
             {/* Man */}
             <circle cx="95" cy="25" r="25" />
@@ -101,7 +163,12 @@ export function LetterPage({ showLetter, onToggleLetter, onQuestion }: LetterPag
             <circle cx="78" cy="60" r="5" />
 
             {/* Arms holding hands */}
-            <path d="M50,60 L70,60" stroke="#b9496e" strokeWidth="6" strokeLinecap="round" />
+            <path
+              d="M50,60 L70,60"
+              stroke="#b9496e"
+              strokeWidth="6"
+              strokeLinecap="round"
+            />
 
             {/* Heart above them */}
             <path
@@ -118,6 +185,7 @@ export function LetterPage({ showLetter, onToggleLetter, onQuestion }: LetterPag
               opacity="0.4"
               transform="translate(100, -20) scale(0.5)"
             />
+
             <path
               d="M20,-10 C20,-16 16,-20 12,-20 C8,-20 5,-16 5,-12 C5,-7 20,-2 20,-2 C20,-2 35,-7 35,-12 C35,-16 32,-20 28,-20 C24,-20 20,-16 20,-10 Z"
               fill="#e34978"
@@ -141,30 +209,75 @@ export function LetterPage({ showLetter, onToggleLetter, onQuestion }: LetterPag
             <span className="bow-grip" />
             <span className="bow-loaded-arrow" />
           </span>
+
           <button
             type="button"
             onClick={launchLove}
             disabled={loveLaunchStage === 'launching'}
             className="love-launcher-button mt-5"
           >
-            {loveLaunchStage === 'idle' || loveLaunchStage === 'celebrating' ? 'Click here' : loveLaunchStage === 'ready' ? 'Ready' : 'Flying'}
+            {loveLaunchStage === 'idle' ||
+              loveLaunchStage === 'celebrating'
+              ? 'Click here'
+              : loveLaunchStage === 'ready'
+                ? 'Ready'
+                : 'Flying'}
           </button>
         </div>
 
-        {loveLaunchStage === 'launching' && <span className="love-arrow" aria-hidden="true" />}
+        {loveLaunchStage === 'launching' && (
+          <span className="love-arrow" aria-hidden="true" />
+        )}
 
-        <div className={`love-target ${loveLaunchStage === 'celebrating' ? 'is-celebrating' : ''}`} aria-live="polite">
+        <div
+          className={`love-target ${loveLaunchStage === 'celebrating' ? 'is-celebrating' : ''
+            }`}
+          aria-live="polite"
+        >
           {loveLaunchStage === 'celebrating' && (
             <>
-              <span className="love-burst love-burst-one" aria-hidden="true">♥</span>
-              <span className="love-burst love-burst-two" aria-hidden="true">✦</span>
-              <span className="love-burst love-burst-three" aria-hidden="true">♥</span>
-              <span className="love-burst love-burst-four" aria-hidden="true">✿</span>
-              <span className="love-burst love-burst-five" aria-hidden="true">✦</span>
-              <span className="love-burst love-burst-six" aria-hidden="true">♥</span>
-              <span className="love-burst love-burst-seven" aria-hidden="true">✿</span>
-              <span className="love-burst love-burst-eight" aria-hidden="true">✧</span>
-              <p className='arrow-love'>Love you beibee 💙</p>
+              <span className="love-burst love-burst-one" aria-hidden="true">
+                ♥
+              </span>
+              <span className="love-burst love-burst-two" aria-hidden="true">
+                ✦
+              </span>
+              <span
+                className="love-burst love-burst-three"
+                aria-hidden="true"
+              >
+                ♥
+              </span>
+              <span
+                className="love-burst love-burst-four"
+                aria-hidden="true"
+              >
+                ✿
+              </span>
+              <span
+                className="love-burst love-burst-five"
+                aria-hidden="true"
+              >
+                ✦
+              </span>
+              <span className="love-burst love-burst-six" aria-hidden="true">
+                ♥
+              </span>
+              <span
+                className="love-burst love-burst-seven"
+                aria-hidden="true"
+              >
+                ✿
+              </span>
+              <span
+                className="love-burst love-burst-eight"
+                aria-hidden="true"
+              >
+                ✧
+              </span>
+
+              <p className="arrow-love">Love you beibee 💙</p>
+              <img src={rose_dudu} alt="Dudu" height={20} width={100} /> 
             </>
           )}
         </div>
@@ -176,13 +289,14 @@ export function LetterPage({ showLetter, onToggleLetter, onQuestion }: LetterPag
             </p>
 
             <h2 className="mt-2 font-serif text-5xl leading-none text-[#7d2949] sm:text-7xl">
-              Happy Birthday,<br />
+              Happy Birthday,
+              <br />
               <span className="text-[#e77298]">My Love.</span>
             </h2>
 
             <p className="mt-6 max-w-xl text-base leading-8 text-[#76515f]">
-              The calendar says it&apos;s your birthday. My heart says it&apos;s a
-              day to celebrate the person who makes every day brighter.
+              The calendar says it&apos;s your birthday. My heart says it&apos;s
+              a day to celebrate the person who makes every day brighter.
             </p>
 
             <button
@@ -192,11 +306,13 @@ export function LetterPage({ showLetter, onToggleLetter, onQuestion }: LetterPag
               {showLetter ? 'Close my letter' : 'Read my little letter'} ♡
             </button>
 
+            {/* 💌 LETTER */}
             {showLetter && (
               <div className="animate-in mt-5 rounded-2xl border border-[#efd0da] bg-[#fffdfc] p-5 font-serif text-lg leading-8 text-[#754558] shadow-sm">
-                “My darling, thank you for being you. May this next chapter be filled with tiny adventures, loud laughs, peaceful mornings, and every dream your beautiful heart desires. I'll be cheering you on through all of it. Happy birthday, my love. &nbsp;-- Yours, always.”
+                “{displayedText}”
+                
               </div>
-            )}
+            )}      
 
             <button
               onClick={scrollToMemories}
@@ -205,6 +321,7 @@ export function LetterPage({ showLetter, onToggleLetter, onQuestion }: LetterPag
               See our little memories ↓
             </button>
           </div>
+                
 
           {/* MEDIUM CALENDAR */}
           <div className="relative mx-auto w-full max-w-[260px] lg:mt-0">
@@ -213,8 +330,12 @@ export function LetterPage({ showLetter, onToggleLetter, onQuestion }: LetterPag
             <div className="relative overflow-hidden rounded-xl border-[5px] border-white bg-[#fffdfc] text-center shadow-xl">
               {/* Calendar Header */}
               <div className="bg-gradient-to-r from-[#b9496e] to-[#e981a2] px-3.5 py-2.5 text-white">
-                <p className="text-[9px] font-bold uppercase tracking-[0.3em]">September 2026</p>
-                <p className="mt-0.5 font-serif text-[11px] italic">a day made for you</p>
+                <p className="text-[9px] font-bold uppercase tracking-[0.3em]">
+                  September 2026
+                </p>
+                <p className="mt-0.5 font-serif text-[11px] italic">
+                  a day made for you
+                </p>
               </div>
 
               {/* Calendar Body */}
@@ -233,12 +354,16 @@ export function LetterPage({ showLetter, onToggleLetter, onQuestion }: LetterPag
                 {/* Calendar Days */}
                 <div className="grid grid-cols-7 gap-1">
                   {Array.from({ length: emptyDays }, (_, index) => (
-                    <span key={`empty-${index}`} className="aspect-square" />
+                    <span
+                      key={`empty-${index}`}
+                      className="aspect-square"
+                    />
                   ))}
 
                   {Array.from({ length: daysInMonth }, (_, index) => {
                     const dayNumber = index + 1
                     const isSpecialDay = dayNumber === 11
+
                     return (
                       <span
                         key={dayNumber}
@@ -256,35 +381,59 @@ export function LetterPage({ showLetter, onToggleLetter, onQuestion }: LetterPag
                 {/* Calendar Footer */}
                 <div className="mt-3 border-t border-[#f1d6de] pt-3">
                   <p className="font-serif text-2xl text-[#8d3856]">11</p>
+
                   <p className="mt-0.5 text-[8px] font-bold uppercase tracking-[0.2em] text-[#c36a85]">
                     Friday · Sep 2026
                   </p>
+
                   <p className="mt-1.5 font-serif text-[10px] italic text-[#b6607c]">
                     our special day ♥
                   </p>
                 </div>
               </div>
             </div>
-
           </div>
 
+          {/* WHO IS SHE */}
           <aside className="who-is-she-panel mx-auto md:-mt-40 w-full max-w-[230px] self-center text-center lg:mx-0">
-            <p className="font-serif text-2xl italic text-[#8d3856]">Who is She?</p>
-            <div className="love-name-viewport mt-4" aria-label={relationshipNames.join(', ')}>
-              <div className="love-name-track">
-                {[...relationshipNames, ...relationshipNames].map((name, index) => (
-                  <p key={`${name}-${index}`} className="love-name-item">{name}</p>
-                ))}
+            <p className="font-serif text-2xl italic text-[#8d3856]">
+              Who is She?
+            </p>
+
+            <div className="relative mt-4 h-[190px] overflow-hidden">
+              <div
+                className="absolute inset-0 transition-transform duration-700 ease-in-out"
+                style={{
+                  transform: `translateY(-${nameStartIndex * 38}px)`,
+                }}
+              >
+                {[...relationshipNames, ...relationshipNames.slice(0, 5)].map(
+                  (name, index) => (
+                    <p
+                      key={`${name}-${index}`}
+                      className="flex h-[38px] items-center justify-center font-serif text-lg italic text-[#8d5367]"
+                    >
+                      {name}
+                    </p>
+                  ),
+                )}
               </div>
             </div>
-          </aside>
-        </div>
+                        
+
+
+          </aside>      
+        </div>        
       </div>
+      
 
-      {/* Memories Section */}
-      <div id="memories" className="relative z-10 scroll-mt-8 border-t border-[#f0d4dc] pt-14 text-center">
-        <p className="font-serif text-4xl italic text-[#a34a67]">Our little memories</p>
-
+      <div
+        id="memories"
+        className="relative z-10 scroll-mt-8 border-t border-[#f0d4dc] pt-14 text-center"
+      >
+        <p className="font-serif text-4xl italic text-[#a34a67]">
+          Our little memories
+        </p>
 
         <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {memories.map((memory, index) => (
@@ -298,9 +447,11 @@ export function LetterPage({ showLetter, onToggleLetter, onQuestion }: LetterPag
                 alt={memory.caption}
                 className="aspect-[4/5] w-full object-cover"
               />
+
               <figcaption className="mt-3 px-1 font-serif text-lg italic text-[#8e5367]">
                 {memory.caption}
               </figcaption>
+
               <p className="mt-1 px-1 text-xs leading-5 text-[#a27887]">
                 {memory.note}
               </p>
@@ -310,7 +461,7 @@ export function LetterPage({ showLetter, onToggleLetter, onQuestion }: LetterPag
 
         <button
           onClick={onQuestion}
-          className="mt-12 rounded-full bg-[#923b5a] px-7 py-4 text-xs font-bold uppercase tracking-[.16em] text-white shadow-lg transition hover:-translate-y-1  cursor-pointer"
+          className="mt-12 rounded-full bg-[#923b5a] px-7 py-4 text-xs font-bold uppercase tracking-[.16em] text-white shadow-lg transition hover:-translate-y-1 cursor-pointer"
         >
           One last question →
         </button>
