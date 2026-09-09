@@ -56,7 +56,7 @@ export function LetterPage({
 
   // 💌 Letter text
   const letterText =
-    "My darling, thank you for being you. May this next chapter be filled with tiny adventures, loud laughs, peaceful mornings, and every dream your beautiful heart desires. I'll be cheering you on through all of it. Happy birthday, my love. — Yours, always."
+    "My darling, thank you for being you. May this next chapter be filled with tiny adventures, loud laughs, peaceful mornings, and every dream your beautiful heart desires. I'll be cheering you on through all of it. Happy birthday, my love. -- Yours, always.💙"
 
   const [displayedText, setDisplayedText] = useState('')
   const [nameStartIndex, setNameStartIndex] = useState(0)
