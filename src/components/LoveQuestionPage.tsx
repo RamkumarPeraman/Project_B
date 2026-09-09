@@ -1,5 +1,6 @@
 import { useRef } from 'react'
 import { HappyCollage } from './HappyCollage'
+import './baloon.css'
 
 type LoveQuestionPageProps = {
   mood: 'normal' | 'sad' | 'happy'
