@@ -277,7 +277,7 @@ export function LetterPage({
               </span>
 
               <p className="arrow-love">Love you beibee 💙</p>
-              <img src={rose_dudu} alt="Dudu" height={20} width={100} /> 
+              <img src={rose_dudu} alt="Dudu" height={20} width={105} /> 
             </>
           )}
         </div>
