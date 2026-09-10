@@ -58,7 +58,8 @@ const duduBubuAssets = import.meta.glob(
 
 const DUDU_BUBU_GIF = Object.values(duduBubuAssets)[0]
 
-const CORRECT_PIN = '102938'
+const CORRECT_PIN = '112003'
+const CORRECT_PIN1 = '270323'
 
 export function WelcomePage({ countdown, onOpen }: WelcomePageProps) {
   const [isPinOpen, setIsPinOpen] = useState(false)
@@ -103,7 +104,7 @@ export function WelcomePage({ countdown, onOpen }: WelcomePageProps) {
   const submitPin = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
-    if (pin === CORRECT_PIN) {
+    if (pin === CORRECT_PIN || pin == CORRECT_PIN1) {
       openSurprise()
       return
     }
