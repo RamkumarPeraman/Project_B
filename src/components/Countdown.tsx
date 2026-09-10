@@ -1,13 +1,25 @@
+import { useEffect } from 'react'
+
 type CountdownProps = {
   values: { days: number; hours: number; mins: number; secs: number }
+  onComplete?: () => void
 }
 
-export function Countdown({ values }: CountdownProps) {
+export function Countdown({ values, onComplete }: CountdownProps) {
+  const { days, hours, mins, secs } = values
+
+  useEffect(() => {
+    if (days === 0 && hours === 0 && mins === 0 && secs === 0) {
+      onComplete?.()
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [days, hours, mins, secs])
+
   const units = [
-    [values.days, 'days'],
-    [values.hours, 'hours'],
-    [values.mins, 'mins'],
-    [values.secs, 'secs']
+    [days, 'days'],
+    [hours, 'hours'],
+    [mins, 'mins'],
+    [secs, 'secs'],
   ]
 
   return (

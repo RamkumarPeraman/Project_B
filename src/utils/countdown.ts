@@ -1,4 +1,4 @@
-export const BIRTHDAY = new Date('2026-09-11T00:00:00+05:30').getTime()
+export const BIRTHDAY = new Date('2026-09-10T21:06:00+05:30').getTime()
 
 export function timeLeft() {
   const distance = Math.max(0, BIRTHDAY - Date.now())
