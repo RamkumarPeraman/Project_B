@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Decorations } from './components/Decorations'
+import { AstralPage } from './components/AstralPage'
 import { LetterPage } from './components/LetterPage'
 import { LoveQuestionPage } from './components/LoveQuestionPage'
 import { WelcomePage } from './components/WelcomePage'
@@ -54,8 +55,11 @@ function App() {
           showLetter={showLetter}
           onToggleLetter={() => setShowLetter(!showLetter)}
           onQuestion={() => setPage(3)}
+          onOpenAstral={() => setPage(2)}
         />
       )}
+
+      {page === 2 && <AstralPage onBack={() => setPage(1)} />}
 
       {page === 3 && (
         <LoveQuestionPage

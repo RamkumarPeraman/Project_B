@@ -6,6 +6,7 @@ type LetterPageProps = {
   showLetter: boolean
   onToggleLetter: () => void
   onQuestion: () => void
+  onOpenAstral: () => void
 }
 
 const relationshipNames = [
@@ -49,6 +50,7 @@ export function LetterPage({
   showLetter,
   onToggleLetter,
   onQuestion,
+  onOpenAstral,
 }: LetterPageProps) {
   const [loveLaunchStage, setLoveLaunchStage] = useState<
     'idle' | 'ready' | 'launching' | 'celebrating'
@@ -100,6 +102,23 @@ export function LetterPage({
     document
       .getElementById('memories')
       ?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+
+  const renderLetterText = () =>
+    displayedText.split(/(Yours)/).map((part, index) =>
+      part === 'Yours' ? (
+        <button
+          key={index}
+          type="button"
+          onClick={onOpenAstral}
+          className="cursor-pointer text-inherit"
+          aria-label="Open our astral memory"
+        >
+          Yours
+        </button>
+      ) : (
+        part
+      ),
+    )
 
   const launchLove = () => {
     if (loveLaunchStage === 'idle') {
@@ -309,7 +328,7 @@ export function LetterPage({
             {/* 💌 LETTER */}
             {showLetter && (
               <div className="animate-in mt-5 rounded-2xl border border-[#efd0da] bg-[#fffdfc] p-5 font-serif text-lg leading-8 text-[#754558] shadow-sm">
-                “{displayedText}”
+                “{renderLetterText()}”
                 
               </div>
             )}      
